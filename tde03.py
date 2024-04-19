@@ -123,7 +123,7 @@ def primeira_questao():
 
                         sender = parsed_message["From"]
                         receiver = parsed_message["To"]
-                        if sender != None and receiver != None:
+                        if receiver != None:
                             receivers = receiver.split(",")
                             for r in receivers:
                                 txt = r.strip()
@@ -189,24 +189,27 @@ def quarta_questao():
         queue.pop(0)
         
 
+def terceira_questao():
+    lists = []
+    for k, v in G.lista_adjacencias.items():
+        if G.direcionado:
+            if G.grau_entrada(k) != G.grau_saida(k):
+                lists.append("Um dos nós do grafo não possui um grau de entrada e saída que sejam iguais.")
+                break
+        else:
+            if G.grau_entrada(k) % 2 != 0 or G.grau_saida(k) % 2 != 0:
+                lists.append("Um dos nós do grafo não possui grau par.")
+                break
+    print(lists)
+            
         
 def main():
-    #primeira_questao()
-    #segunda_questao()
+    primeira_questao()
+    segunda_questao()
     #quarta_questao()
-    G.adiciona_aresta('Maçã', 'Banana', 2)
-    G.adiciona_aresta('Maçã', 'Laranja', 1)
-    G.adiciona_aresta('Banana', 'Pêssego', 7)
-    G.adiciona_aresta('Laranja', 'Pêssego', 1)
-    G.adiciona_aresta('Pêssego', 'Laranja', 2)
-    G.adiciona_aresta('Laranja', 'Maçã', 1)
-    G.adiciona_aresta('Banana', 'Cereja', 7)
-    G.adiciona_aresta('Cereja', 'Pêssego', 1)
-    G.adiciona_aresta('Maçã', 'Cereja', 2)
-    G.adiciona_aresta('Cereja', 'Tomate', 1)
-    G.adiciona_aresta('Banana', 'Tomate', 7)
-    G.adiciona_aresta('Cereja', 'Maçã', 1)
-    sexta_questao()
+
+    #sexta_questao()
+    terceira_questao()
                 
 
 if __name__ == "__main__":
